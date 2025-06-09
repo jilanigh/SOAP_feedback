@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="http://feedback.com/service"
+           targetNamespace="http://feedback.com/service"
+           elementFormDefault="qualified">
+
+    <xs:element name="submitFeedbackRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="userId" type="xs:long"/>
+                <xs:element name="productId" type="xs:long"/>
+                <xs:element name="rating" type="xs:integer"/>
+                <xs:element name="comment" type="xs:string" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="submitFeedbackResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="feedback" type="tns:feedback"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getFeedbacksByProductRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="productId" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getFeedbacksByProductResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="feedback" type="tns:feedback" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getFeedbacksByUserRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="userId" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getFeedbacksByUserResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="feedback" type="tns:feedback" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getAverageRatingRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="productId" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getAverageRatingResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="averageRating" type="xs:double"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="feedback">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="userId" type="xs:long"/>
+            <xs:element name="productId" type="xs:long"/>
+            <xs:element name="rating" type="xs:integer"/>
+            <xs:element name="comment" type="xs:string" minOccurs="0"/>
+            <xs:element name="createdAt" type="xs:dateTime"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema> 
